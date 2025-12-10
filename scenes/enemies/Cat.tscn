@@ -1,0 +1,93 @@
+[gd_scene load_steps=13 format=3 uid="uid://7rkf7p3vnw38"]
+
+[ext_resource type="Script" uid="uid://hiwtn3wdnt3y" path="res://scripts/Cat.gd" id="1_yvfbp"]
+[ext_resource type="Texture2D" uid="uid://cwuln1oy70vjw" path="res://assets/sprites/enemies/cat.png" id="2_qtqmw"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dffpx"]
+atlas = ExtResource("2_qtqmw")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it62q"]
+atlas = ExtResource("2_qtqmw")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvhit"]
+atlas = ExtResource("2_qtqmw")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vyi16"]
+atlas = ExtResource("2_qtqmw")
+region = Rect2(384, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tg8i"]
+atlas = ExtResource("2_qtqmw")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmtsy"]
+atlas = ExtResource("2_qtqmw")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pd71s"]
+atlas = ExtResource("2_qtqmw")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8giap"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dffpx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it62q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvhit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vyi16")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tg8i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmtsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pd71s")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yvfbp"]
+radius = 33.60254
+height = 109.56171
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qtqmw"]
+radius = 32.21425
+height = 115.220276
+
+[node name="Cat" type="CharacterBody2D"]
+script = ExtResource("1_yvfbp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8giap")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13, 27)
+rotation = 1.0659349
+shape = SubResource("CapsuleShape2D_yvfbp")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(13, 27)
+rotation = 1.0262027
+shape = SubResource("CapsuleShape2D_qtqmw")

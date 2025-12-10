@@ -1,0 +1,88 @@
+[gd_scene load_steps=12 format=3 uid="uid://cvyej67ofog5y"]
+
+[ext_resource type="Script" uid="uid://cllhxqydj6u4o" path="res://scripts/Scientist.gd" id="1_6k46f"]
+[ext_resource type="Texture2D" uid="uid://cgdjqssgo3or5" path="res://assets/sprites/npc/scientist.png" id="2_vl8ne"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_51b5l"]
+atlas = ExtResource("2_vl8ne")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tm4rh"]
+atlas = ExtResource("2_vl8ne")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31vbh"]
+atlas = ExtResource("2_vl8ne")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eu1rf"]
+atlas = ExtResource("2_vl8ne")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h5ksm"]
+atlas = ExtResource("2_vl8ne")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u0dmx"]
+atlas = ExtResource("2_vl8ne")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vcnpb"]
+atlas = ExtResource("2_vl8ne")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_clbpj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_51b5l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tm4rh")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31vbh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eu1rf")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h5ksm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u0dmx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vcnpb")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vn01y"]
+radius = 29.0
+height = 128.0
+
+[node name="Scientist" type="Node2D"]
+script = ExtResource("1_6k46f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_clbpj")
+animation = &"talk"
+
+[node name="TalkArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TalkArea"]
+position = Vector2(31, 0)
+shape = SubResource("CapsuleShape2D_vn01y")
