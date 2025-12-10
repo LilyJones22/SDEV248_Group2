@@ -61,7 +61,6 @@ res://
 │
 ├── assets/
 │   ├── backgrounds/
-│   ├── tiles/
 │   └── sprites/
 │       ├── player/
 │       ├── enemies/
