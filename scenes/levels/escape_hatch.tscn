@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://diu5uooc2aels"]
+
+[ext_resource type="Script" uid="uid://vcyhv7xv2vbw" path="res://scripts/escape_hatch.gd" id="1_kkhqg"]
+[ext_resource type="Texture2D" uid="uid://daqjld6rkoy5d" path="res://assets/tilemap1.png" id="2_fnfjy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pt0ru"]
+size = Vector2(70, 54)
+
+[node name="Escape Hatch" type="Area2D"]
+script = ExtResource("1_kkhqg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fnfjy")
+centered = false
+region_enabled = true
+region_rect = Rect2(238.45459, 174.86778, 89.67709, 66.11571)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(47, 32)
+shape = SubResource("RectangleShape2D_pt0ru")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
