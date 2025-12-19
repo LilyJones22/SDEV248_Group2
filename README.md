@@ -1,6 +1,7 @@
 # Lab Rat Escape — Team Project
 
 _A 2D Action Platformer Built in Godot 4_
+<p>Watch it in action: https://youtu.be/1yiAErNJyDQ</p>
 
 ---
 
