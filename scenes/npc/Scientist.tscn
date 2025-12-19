@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cvyej67ofog5y"]
+[gd_scene load_steps=11 format=3 uid="uid://cvyej67ofog5y"]
 
 [ext_resource type="Script" uid="uid://cllhxqydj6u4o" path="res://scripts/Scientist.gd" id="1_6k46f"]
 [ext_resource type="Texture2D" uid="uid://cgdjqssgo3or5" path="res://assets/sprites/npc/scientist.png" id="2_vl8ne"]
@@ -6,10 +6,6 @@
 [sub_resource type="AtlasTexture" id="AtlasTexture_51b5l"]
 atlas = ExtResource("2_vl8ne")
 region = Rect2(0, 128, 128, 128)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tm4rh"]
-atlas = ExtResource("2_vl8ne")
-region = Rect2(128, 128, 128, 128)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_31vbh"]
 atlas = ExtResource("2_vl8ne")
@@ -36,9 +32,6 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_51b5l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tm4rh")
 }],
 "loop": true,
 "name": &"idle",
@@ -79,10 +72,25 @@ script = ExtResource("1_6k46f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_clbpj")
-animation = &"talk"
+animation = &"idle"
 
 [node name="TalkArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TalkArea"]
 position = Vector2(31, 0)
 shape = SubResource("CapsuleShape2D_vn01y")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = 3.0
+offset_top = -115.0
+offset_right = 570.0
+offset_bottom = -73.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+text = "Dr Godot: Security is malfunctioning. Head for the exit!"
+
+[connection signal="talked_to" from="." to="." method="_on_talked_to"]
+[connection signal="body_entered" from="TalkArea" to="." method="_on_talk_area_body_entered"]
+[connection signal="body_exited" from="TalkArea" to="." method="_on_talk_area_body_exited"]
