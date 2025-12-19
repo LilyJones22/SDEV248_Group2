@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED := 200.0
 const JUMP_VELOCITY := -400.0
 
+var health = 3
 var gravity: float = ProjectSettings.get_setting("physics/2d/default_gravity") as float
 
 func _ready() -> void:
@@ -51,3 +52,15 @@ func _update_animation(direction: int) -> void:
 		anim.play("idle")
 	else:
 		anim.play("run")
+
+func take_damage(damage):
+	if health > 0:
+		var heart_name = "../HUD/Health/Heart" + str(health)
+		var hit = get_node(heart_name)
+		hit.queue_free()
+		health -= damage
+	elif health < 1:
+		call_deferred("lose")
+		
+func lose():
+	get_tree().change_scene_to_file("res://scenes/levels/cutscenes/failure_cutscene.tscn")
